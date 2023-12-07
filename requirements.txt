@@ -1,3 +1,8 @@
 django==3.0
 flake8==3.7.0
 pytest-django==3.9.0
+pytz==2023.3.post1
+six==1.16.0
+sqlparse==0.4.4
+tomli==2.0.1
+typing_extensions==4.8.0
