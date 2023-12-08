@@ -72,7 +72,26 @@ exécute l'interpréteur Python ci-dessus (à moins qu'un environnement virtuel 
 
 ### Containerisation
 
-#### Build
+#### Push automatique sur Docker-hub
+
+Lors d'un Push ou d'un merge de la branche Master, l'étape "containerize" du fichier .github/workflows/pipeline.ylm
+s'assure qu'une image toujours à jour du dernier commit valide est présent sur le hub docker.
+Pour que cette étape fonctionne correctement, assurez vous de bien mettre en place vos identifiants docker via
+les [secrets github](https://docs.github.com/fr/actions/security-guides/using-secrets-in-github-actions).
+
+Ces informations seront utilisée lignes 52 et 53 du workflow :
+`- name: Log in to Docker Hub
+uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
+with:
+username: ${{ secrets.DOCKER_USERNAME }}
+password: ${{ secrets.DOCKER_PASSWORD }}`
+
+Pour plus de facilité dans l'organisation du hub docker, le Tag des images correspond au hash du commit github :
+`tags: antoinetsz/letting-fr:${{ github.sha }}`
+
+#### Build manuel
+
+Si vous souhaitez faire une image docker manuellement, utilisez la commande :
 
 - `docker build -t lettings-fr .`
 
