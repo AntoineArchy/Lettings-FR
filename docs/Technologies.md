@@ -19,6 +19,8 @@
     - [Utilisation](ProcedureTestEtGestionErreurs.md#formatage)
 - **Monitoring**: [Sentry](https://sentry.io/welcome/)
     - [Utilisation](ProcedureTestEtGestionErreurs.md#monitoring)
+- **Documentation
+  **: [ReadTheDocs /w MkDocs](https://docs.readthedocs.io/en/stable/intro/getting-started-with-mkdocs.html)
 - **Convention d'écriture:** [Guide de développement](pdf/Guide%20de%20développement.pdf).
 
 ## Outils de Gestion de Projet
@@ -33,5 +35,4 @@
 - **[GitHub Actions:](https://github.com/features/actions)** Mise en place d'un pipeline CI/CD pour automatiser les
   tests, le build et le déploiement.
     - [Détail de l'implémentation](CI_CD_Deploiement.md)
-      [FUTURE]
-- **Azure**
+- [FUTURE]**Azure**

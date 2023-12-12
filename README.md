@@ -1,7 +1,7 @@
 ## Résumé
 
 Le projet est une application web basée sur le framework Django. Il consiste en la refonte d'une architecture
-monolithique actuelle en plusieurs applications distinctes. Cette optimisation implique la séparation des
+monolithique en plusieurs applications distinctes. Cette optimisation implique la séparation des
 fonctionnalités actuelles en deux nouvelles applications, "lettings" et "profiles". Les principales fonctionnalités du
 projet comprennent :
 
@@ -36,4 +36,3 @@ projet. Elle couvre les aspects suivants :
 
 Chaque section de ce document est conçue pour couvrir un aspect spécifique du projet. Suivez les liens pour accéder
 directement à la documentation pertinente.
-
