@@ -16,7 +16,8 @@ Lors d'un push sur le repo :
     - Exécute le linting, les tests unitaires, et vérifie que la couverture de test est supérieure à 80%.
 
 Dans le cas ou le push concerne la branche principale ET que la suite de tests s'est exécutée sans erreurs, alors :
-**2. **Conteneurisation :****
+
+2. **Conteneurisation :**
 
 - Construit une image Docker du site.
 - Tague les images avec le "hash" de commit.
