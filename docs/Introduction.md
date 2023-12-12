@@ -32,12 +32,11 @@ Cette documentation a pour objectif de guider les développeurs, les contributeu
 projet. Elle couvre les aspects suivants :
 
 - [Installation du projet et démarrage rapide](Installation.md).
-- Technologies utilisées et explications détaillées.
-- Architecture de la base de données et modèles de données.
-- Interfaces de programmation, vues, URLs, et templates.
-- Procédures de test et de gestion des erreurs.
-- Mise en place d'un pipeline CI/CD et processus de déploiement.
-- Documentation supplémentaire, guide d'utilisation, et conventions de codage.
+- [Technologies utilisées](Technologies.md).
+- [Architecture de la base de données et modèles de données](StructureBaseDeDonnees.md).
+- [Interfaces de programmation (vues, URLs, et templates)](InterfacesDeProgrammation.md).
+- [Procédures de test et de gestion des erreurs](ProcedureTestEtGestionErreurs.md).
+- [CI/CD et processus de déploiement](CI_CD_Deploiement.md).
 
 ## Comment Utiliser Cette Documentation
 

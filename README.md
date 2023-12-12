@@ -1,10 +1,16 @@
 ## Résumé
 
-Site web d'Orange County Lettings
+Le projet est une application web basée sur le framework Django. Il consiste en la refonte d'une architecture
+monolithique actuelle en plusieurs applications distinctes. Cette optimisation implique la séparation des
+fonctionnalités actuelles en deux nouvelles applications, "lettings" et "profiles". Les principales fonctionnalités du
+projet comprennent :
 
-## Développement local
+- Gestion des locations : La partie "lettings" gère les informations liées aux locations, avec des modèles tels que "
+  Address" et "Letting".
+- Profils Utilisateurs : La partie "profiles" est dédiée à la gestion des profils utilisateurs, avec le modèle "
+  Profile".
 
-### Prérequis
+## Prérequis
 
 - Compte GitHub avec accès en lecture à ce repository
 - Git CLI
@@ -14,75 +20,20 @@ Site web d'Orange County Lettings
 Dans le reste de la documentation sur le développement local, il est supposé que la commande `python` de votre OS shell
 exécute l'interpréteur Python ci-dessus (à moins qu'un environnement virtuel ne soit activé).
 
-### macOS / Linux
+## Objectifs de la Documentation
 
-#### Cloner le repository
+Cette documentation a pour objectif de guider les développeurs, les contributeurs, et toute personne impliquée dans le
+projet. Elle couvre les aspects suivants :
 
-- `cd /path/to/put/project/in`
-- `git clone https://github.com/OpenClassrooms-Student-Center/Python-OC-Lettings-FR.git`
+- [Installation du projet et démarrage rapide](docs/Installation.md).
+- [Technologies utilisées](docs/Technologies.md).
+- [Architecture de la base de données et modèles de données](docs/StructureBaseDeDonnees.md).
+- [Interfaces de programmation (vues, URLs, et templates)](docs/InterfacesDeProgrammation.md).
+- [Procédures de test et de gestion des erreurs](docs/ProcedureTestEtGestionErreurs.md).
+- [CI/CD et processus de déploiement](docs/CI_CD_Deploiement.md).
 
-#### Créer l'environnement virtuel
+## Comment Utiliser Cette Documentation
 
-- `cd /path/to/Python-OC-Lettings-FR`
-- `python -m venv venv`
-- `apt-get install python3-venv` (Si l'étape précédente comporte des erreurs avec un paquet non trouvé sur Ubuntu)
-- Activer l'environnement `source venv/bin/activate`
-- Confirmer que la commande `python` exécute l'interpréteur Python dans l'environnement virtuel
-  `which python`
-- Confirmer que la version de l'interpréteur Python est la version 3.6 ou supérieure `python --version`
-- Confirmer que la commande `pip` exécute l'exécutable pip dans l'environnement virtuel, `which pip`
-- Pour désactiver l'environnement, `deactivate`
+Chaque section de ce document est conçue pour couvrir un aspect spécifique du projet. Suivez les liens pour accéder
+directement à la documentation pertinente.
 
-#### Exécuter le site
-
-- `cd /path/to/Python-OC-Lettings-FR`
-- `source venv/bin/activate`
-- `pip install --requirement requirements.txt`
-- `python manage.py runserver`
-- Aller sur `http://localhost:8000` dans un navigateur.
-- Confirmer que le site fonctionne et qu'il est possible de naviguer (vous devriez voir plusieurs profils et locations).
-
-#### Linting
-
-- `cd /path/to/Python-OC-Lettings-FR`
-- `source venv/bin/activate`
-- `flake8`
-
-#### Tests unitaires
-
-- `cd /path/to/Python-OC-Lettings-FR`
-- `source venv/bin/activate`
-- `pytest`
-
-#### Base de données
-
-- `cd /path/to/Python-OC-Lettings-FR`
-- Ouvrir une session shell `sqlite3`
-- Se connecter à la base de données `.open oc-lettings-site.sqlite3`
-- Afficher les tables dans la base de données `.tables`
-- Afficher les colonnes dans le tableau des profils, `pragma table_info(Python-OC-Lettings-FR_profile);`
-- Lancer une requête sur la table des profils, `select user_id, favorite_city from
-  Python-OC-Lettings-FR_profile where favorite_city like 'B%';`
-- `.quit` pour quitter
-
-#### Panel d'administration
-
-- Aller sur `http://localhost:8000/admin`
-- Connectez-vous avec l'utilisateur `admin`, mot de passe `Abc1234!`
-
-### Containerisation
-
-#### Build
-
-- `docker build -t lettings-fr .`
-
-#### Run
-
-- `run -dp 127.0.0.1:3000:3000 lettings-fr`
-
-### Windows
-
-Utilisation de PowerShell, comme ci-dessus sauf :
-
-- Pour activer l'environnement virtuel, `.\venv\Scripts\Activate.ps1`
-- Remplacer `which <my-command>` par `(Get-Command <my-command>).Path`
