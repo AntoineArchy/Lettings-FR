@@ -7,7 +7,7 @@ Ce document décrit le processus de CI/CD et les étapes de déploiement du proj
 Le pipeline CI/CD est conçu pour automatiser la construction, les tests, la conteneurisation, et le déploiement du
 projet.
 
-### Étapes du pipeline :
+### Étapes de la pipeline :
 
 Lors d'un push sur le repo :
 
@@ -31,7 +31,7 @@ Dans le cas ou le push concerne la branche principale ET que la conteneurisation
 ## Fonctionnement
 
 L'automatisation repose sur des [Github Action](https://github.com/features/actions). Le détail du workflow est
-consultables dans le fichier [pipeline.yml](../workflows/pipeline.yml)
+consultables dans le fichier .github/workflows/pipeline.yml
 
 ## Prérequis
 
