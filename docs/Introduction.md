@@ -1,4 +1,10 @@
-## Résumé
+# Documentation Technique
+
+Bienvenue dans la documentation technique de Orange County Lettings. Cette documentation vise à fournir une
+compréhension approfondie des différents aspects du projet, allant de l'architecture du code aux processus de
+déploiement.
+
+## Aperçu du Projet
 
 Le projet est une application web basée sur le framework Django. Il consiste en la refonte d'une architecture
 monolithique actuelle en plusieurs applications distinctes. Cette optimisation implique la séparation des
@@ -25,12 +31,12 @@ exécute l'interpréteur Python ci-dessus (à moins qu'un environnement virtuel 
 Cette documentation a pour objectif de guider les développeurs, les contributeurs, et toute personne impliquée dans le
 projet. Elle couvre les aspects suivants :
 
-- [Installation du projet et démarrage rapide](docs/Installation.md).
-- [Technologies utilisées](docs/Technologies.md).
-- [Architecture de la base de données et modèles de données](docs/StructureBaseDeDonnees.md).
-- [Interfaces de programmation (vues, URLs, et templates)](docs/InterfacesDeProgrammation.md).
-- [Procédures de test et de gestion des erreurs](docs/ProcedureTestEtGestionErreurs.md).
-- [CI/CD et processus de déploiement](docs/CI_CD_Deploiement.md).
+- [Installation du projet et démarrage rapide](Installation.md).
+- [Technologies utilisées](Technologies.md).
+- [Architecture de la base de données et modèles de données](StructureBaseDeDonnees.md).
+- [Interfaces de programmation (vues, URLs, et templates)](InterfacesDeProgrammation.md).
+- [Procédures de test et de gestion des erreurs](ProcedureTestEtGestionErreurs.md).
+- [CI/CD et processus de déploiement](CI_CD_Deploiement.md).
 
 ## Comment Utiliser Cette Documentation
 
