@@ -18,10 +18,9 @@ Lors d'un push sur le repo :
 Dans le cas ou le push concerne la branche principale ET que la suite de tests s'est exécutée sans erreurs, alors :
 
 2. **Conteneurisation :**
-
-- Construit une image Docker du site.
-- Tague les images avec le "hash" de commit.
-- Pousse l'image vers le registre des conteneurs Docker Hub.
+    - Construit une image Docker du site.
+    - Tague les images avec le "hash" de commit.
+    - Pousse l'image vers le registre des conteneurs Docker Hub.
 
 [FUTURE]
 Dans le cas ou le push concerne la branche principale ET que la conteneurisation s'est exécutée sans erreurs, alors :
