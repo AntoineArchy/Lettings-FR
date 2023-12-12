@@ -1,0 +1,14 @@
+site_name: Documentation Orange County Lettings
+theme:
+  name: 'material'
+  features:
+    - navigation.sidebar
+    - navigation.sidebar.sticky
+nav:
+  - Aperçu du Projet: 'index.md'
+  - Installation: 'Installation.md'
+  - Technologies utilisées: 'Technologies.md'
+  - Structure de la base de données: 'StructureBaseDeDonnees.md'
+  - Interfaces de programmation: 'InterfacesDeProgrammation.md'
+  - Procédures de test et de gestion des erreurs: 'ProcedureTestEtGestionErreurs.md'
+  - CI/CD et processus de déploiement: 'CI_CD_Deploiement.md'
