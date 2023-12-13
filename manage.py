@@ -35,10 +35,10 @@ logger.setLevel(logging.INFO)
 logger.addHandler(daily_log_handler)
 
 # Intégration à Sentry :
-sentry_dns = os.getenv("SENTRY_DNS", None)
-if sentry_dns is not None:
+sentry_dsn = os.getenv("SENTRY_DSN", None)
+if sentry_dsn is not None:
     sentry_sdk.init(
-        dsn=sentry_dns,
+        dsn=sentry_dsn,
         integrations=[
             LoggingIntegration(
                 level=logging.INFO,  # Capture info and above as breadcrumbs

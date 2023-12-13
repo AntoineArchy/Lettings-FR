@@ -43,7 +43,7 @@ jobs:
     if: ${{ needs.build_and_test.result == 'success' && github.ref == 'refs/heads/master' }}
 
     env:
-      SENTRY_DNS: ${{ secrets.SENTRY_DNS }}
+      SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
 
     steps:
       - name: Checkout code
