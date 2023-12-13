@@ -25,7 +25,8 @@
 
 ## Outils de Gestion de Projet
 
-- **[GitHub](https://github.com/AntoineArchy/Lettings-FR):** Contrôle de version, suivi des modifications, suivi des
+- **[GitHub](https://github.com/AntoineArchy/Lettings-FR/milestone/1?closed=1):** Contrôle de version, suivi des
+  modifications, suivi des
   tickets.
 
 ## Outils CI/CD

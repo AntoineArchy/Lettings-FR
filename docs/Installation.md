@@ -21,6 +21,15 @@ Cette section décrit les prérequis et les étapes d'installation et de démarr
 - Confirmer que la commande `pip` exécute l'exécutable pip dans l'environnement virtuel, `which pip`
 - Pour désactiver l'environnement, `deactivate`
 
+## Définir les variables d'environnements
+
+Pour certains de ses paramètres, l'application repose sur
+des [variables d'environnements](https://docs.python.org/fr/3/library/os.html?highlight=env#os.getenv).
+Un fichier .env avec des informations par défault est présent à la racine du projet, vous pouvez modifier ce fichier
+afin d'y renseigner vos propres paramètres.
+
+- Voir [Configuration Sentry](ProcedureTestEtGestionErreurs.md#monitoring)
+
 ## Exécuter le site
 
 - `cd /path/to/Python-OC-Lettings-FR`
