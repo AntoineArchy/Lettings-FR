@@ -1,16 +1,21 @@
 import logging
+import re
 
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import (
     HttpRequest,
     HttpResponse,
-    HttpResponseServerError,
-    HttpResponseNotFound,
-    HttpResponseBadRequest,
 )
 from django.shortcuts import render
 
 from .models import Letting, Profile
+
+
+def log_and_response_error(
+    request: HttpRequest, log_message: str, response_message: str, status_code: int
+):
+    logging.error(f"{request.path} : {status_code}, {log_message}")
+    return HttpResponse(status=status_code, content=response_message)
 
 
 def index(request: HttpRequest) -> HttpResponse:
@@ -40,13 +45,15 @@ def lettings_index(request: HttpRequest) -> HttpResponse:
         return render(request, "lettings_index.html", context)
 
     except Exception as e:
-        logging.error(f"Une erreur s'est produite lors de la récupération des locations: {e}")
-        return HttpResponseServerError(
-            "Une erreur s'est produite lors de la récupération des locations."
+        return log_and_response_error(
+            request,
+            f"Une erreur s'est produite lors de la récupération des locations: {e}",
+            "Une erreur s'est produite lors de la récupération des locations.",
+            500,
         )
 
 
-def letting(request: HttpRequest, letting_id: int) -> HttpResponse:
+def letting(request: HttpRequest, letting_id: str) -> HttpResponse:
     """
     Récupère les informations sur une location spécifique et les affiche dans la vue 'letting.html'.
 
@@ -57,6 +64,14 @@ def letting(request: HttpRequest, letting_id: int) -> HttpResponse:
     :return:
         HttpResponse: La location demandée dans le template 'letting.html'.
     """
+    if not re.match("^\d+$", letting_id):
+        return log_and_response_error(
+            request,
+            f"Une erreur s'est produite lors de la récupération de la location {letting_id} : "
+            f"{letting_id} n'est pas interprété comme un id valide",
+            "Paramètres de requête invalides.",
+            400,
+        )
 
     try:
         letting = Letting.objects.get(id=letting_id)
@@ -67,16 +82,12 @@ def letting(request: HttpRequest, letting_id: int) -> HttpResponse:
         return render(request, "letting.html", context)
 
     except ObjectDoesNotExist as e:
-        logging.error(
-            f"Une erreur s'est produite lors de la récupération de la locations {letting_id} : {e}"
+        return log_and_response_error(
+            request,
+            f"Une erreur s'est produite lors de la récupération de la locations {letting_id} : {e}",
+            "La location demandée est introuvable.",
+            404,
         )
-        return HttpResponseNotFound("La location demandée est introuvable.")
-
-    except ValueError as e:
-        logging.error(
-            f"Une erreur s'est produite lors de la récupération de la location {letting_id} : {e}"
-        )
-        return HttpResponseBadRequest("Paramètres de requête invalides.")
 
 
 def profiles_index(request: HttpRequest) -> HttpResponse:
@@ -94,9 +105,11 @@ def profiles_index(request: HttpRequest) -> HttpResponse:
         return render(request, "profiles_index.html", context)
 
     except Exception as e:
-        logging.error(f"Une erreur s'est produite lors de la récupération des profiles: {e}")
-        return HttpResponseServerError(
-            "Une erreur s'est produite lors de la récupération des profiles."
+        return log_and_response_error(
+            request,
+            f"Une erreur s'est produite lors de la récupération des profiles: {e}",
+            "Une erreur s'est produite lors de la récupération des profiles.",
+            500,
         )
 
 
@@ -115,13 +128,16 @@ def profile(request: HttpRequest, username: str) -> HttpResponse:
         return render(request, "profile.html", context)
 
     except ObjectDoesNotExist as e:
-        logging.error(
-            f"Une erreur s'est produite lors de la récupération du profil de {username} : {e}"
+        return log_and_response_error(
+            request,
+            f"Une erreur s'est produite lors de la récupération du profil de {username} : {e}",
+            "Le profil demandé est introuvable.",
+            404,
         )
-        return HttpResponseNotFound("Le profil demandé est introuvable.")
-
-    except ValueError as e:
-        logging.error(
-            f"Une erreur s'est produite lors de la récupération du profil de {username} : {e}"
+    except Exception as e:
+        return log_and_response_error(
+            request,
+            f"Une erreur s'est produite lors de la récupération du profil de {username} : {e}",
+            "Paramètres de requête invalides.",
+            500,
         )
-        return HttpResponseBadRequest("Paramètres de requête invalides.")
