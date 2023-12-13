@@ -1,7 +1,7 @@
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from django.test import TestCase
 
-from oc_lettings_site.models import Address
+from oc_lettings_site.lettings.models import Address
 
 
 class AddressModelTest(TestCase):

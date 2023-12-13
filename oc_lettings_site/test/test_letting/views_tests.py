@@ -3,7 +3,7 @@ import logging
 from django.test import TestCase
 from django.urls import reverse
 
-from oc_lettings_site.models import Letting, Address
+from oc_lettings_site.lettings.models import Address, Letting
 
 
 class LettingsIndexViewTest(TestCase):
