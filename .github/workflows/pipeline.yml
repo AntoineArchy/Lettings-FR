@@ -42,8 +42,7 @@ jobs:
     needs: build_and_test
     if: ${{ needs.build_and_test.result == 'success' && github.ref == 'refs/heads/master' }}
 
-    env:
-      SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+
 
     steps:
       - name: Checkout code
@@ -66,6 +65,8 @@ jobs:
 
       - name: Build and push Docker image
         uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
+        env:
+          SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
         with:
           context: .
           file: ./Dockerfile
