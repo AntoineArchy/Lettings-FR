@@ -88,6 +88,13 @@ def letting(request: HttpRequest, letting_id: str) -> HttpResponse:
             "La location demandée est introuvable.",
             404,
         )
+    except Exception as e:
+        return log_and_response_error(
+            request,
+            f"Une erreur s'est produite lors de la récupération de la locations {letting_id}: {e}",
+            f"Une erreur s'est produite lors de la récupération de la locations {letting_id}",
+            500,
+        )
 
 
 def profiles_index(request: HttpRequest) -> HttpResponse:
@@ -138,6 +145,6 @@ def profile(request: HttpRequest, username: str) -> HttpResponse:
         return log_and_response_error(
             request,
             f"Une erreur s'est produite lors de la récupération du profil de {username} : {e}",
-            "Paramètres de requête invalides.",
+            f"Une erreur s'est produite lors de la récupération du profil de {username}",
             500,
         )
