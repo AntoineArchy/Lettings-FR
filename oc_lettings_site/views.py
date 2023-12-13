@@ -55,7 +55,8 @@ def lettings_index(request: HttpRequest) -> HttpResponse:
 
 def letting(request: HttpRequest, letting_id: str) -> HttpResponse:
     """
-    Récupère les informations sur une location spécifique et les affiche dans la vue 'letting.html'.
+    Récupère les informations sur une location spécifique et les affiche dans la
+    vue 'letting.html'.
 
     :argument:
         request (HttpRequest): L'objet de requête HTTP Django.
@@ -64,7 +65,7 @@ def letting(request: HttpRequest, letting_id: str) -> HttpResponse:
     :return:
         HttpResponse: La location demandée dans le template 'letting.html'.
     """
-    if not re.match("^\d+$", letting_id):
+    if not re.match("^\\d+$", letting_id):
         return log_and_response_error(
             request,
             f"Une erreur s'est produite lors de la récupération de la location {letting_id} : "
@@ -84,7 +85,8 @@ def letting(request: HttpRequest, letting_id: str) -> HttpResponse:
     except ObjectDoesNotExist as e:
         return log_and_response_error(
             request,
-            f"Une erreur s'est produite lors de la récupération de la locations {letting_id} : {e}",
+            f"Une erreur s'est produite lors de la récupération de la locations"
+            f" {letting_id} : {e}",
             "La location demandée est introuvable.",
             404,
         )

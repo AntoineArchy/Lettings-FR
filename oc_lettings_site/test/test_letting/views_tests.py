@@ -43,7 +43,7 @@ class LettingsIndexViewTest(TestCase):
 
         url = reverse("lettings_index")
         with self.assertLogs(logger=logging.getLogger(), level="WARNING") as cm:
-            response = self.client.get(url)
+            self.client.get(url)
         self.assertIn("Il semble qu'aucune location ne soit disponible", cm.output[0])
 
 
@@ -73,7 +73,8 @@ class LettingViewTest(TestCase):
         url = reverse("letting", args=["invalid_id"])
         response = self.client.get(url)
 
-        # Vérifie que la réponse a un code HTTP 400 (Bad Request) et contient le bon message d'erreur
+        # Vérifie que la réponse a un code HTTP 400 (Bad Request) et contient le bon message
+        # d'erreur
         self.assertEqual(response.status_code, 400)
         self.assertIn("Paramètres de requête invalides.", response.content.decode())
 

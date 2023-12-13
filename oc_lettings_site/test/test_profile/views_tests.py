@@ -37,7 +37,7 @@ class ProfilesIndexViewTest(TestCase):
 
         url = reverse("profiles_index")
         with self.assertLogs(logger=logging.getLogger(), level="WARNING") as cm:
-            response = self.client.get(url)
+            self.client.get(url)
         self.assertIn("Il semble qu'aucun profil n'est disponible", cm.output[0])
 
 
