@@ -36,8 +36,6 @@ logger.addHandler(daily_log_handler)
 
 # Intégration à Sentry :
 sentry_dsn = os.getenv("SENTRY_DSN", None)
-print(sentry_dsn)
-logging.error(sentry_dsn)
 if sentry_dsn is not None:
     sentry_sdk.init(
         dsn=sentry_dsn,
