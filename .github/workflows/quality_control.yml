@@ -1,0 +1,36 @@
+name: Run tests
+on:
+  push
+jobs:
+  install_requirements:
+    name: Install requirements and run tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Update
+        run: sudo apt update
+
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      - name: Install pip
+        run: sudo apt install python3-pip
+
+      - name: Install requirements
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Check linting
+        run: flake8
+
+      - name: Execute tests
+        env:
+          SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+          SECRET_KEY: ${{ secrets.SENTRY_DSN }}
+          DJANGO_SETTINGS_MODULE: oc_lettings_site.settings
+        run: |
+          coverage run -m pytest  -v -s
+          if [ $? -ne 0 ]; then
+            echo "Tests failed. Exiting..."
+            exit 1
+          fi
