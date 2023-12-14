@@ -59,13 +59,11 @@ class LettingsIndexViewTest(TestCase):
 
         url = reverse("lettings_index")
         response = self.client.get(url)
-
         # Vérifie que la réponse a un code HTTP 500 (Internal Server Error)
         self.assertEqual(response.status_code, 500)
-
-        # Vérifie que l'avertissement est présent
-        self.assertContains(
-            response, "Une erreur s'est produite lors de la récupération des locations."
+        self.assertIn(
+            "Une erreur s'est produite lors de la récupération des locations.",
+            response.content.decode(),
         )
 
 
@@ -118,11 +116,13 @@ class LettingViewTest(TestCase):
         # Configurez le comportement du mock pour lever une exception
         mock_get.side_effect = Exception("Une erreur simulée")
 
-        # Utilisez reverse pour obtenir l'URL avec un ID de location
-        url = reverse("letting", args=["1"])
+        url = reverse("letting", args=["42"])
 
-        # Utilisez with self.assertRaises() pour capturer l'exception attendue
         response = self.client.get(url)
 
-        # Vous pouvez également vérifier le code de statut dans la réponse si nécessaire
-        self.assertEqual(response.status_code, 500)  # Ou le code de statut attendu
+        # Vérifie que la réponse a un code HTTP 500 (Internal Server Error)
+        self.assertEqual(response.status_code, 500)
+        self.assertIn(
+            "Une erreur s'est produite lors de la récupération de la locations 42",
+            response.content.decode(),
+        )
