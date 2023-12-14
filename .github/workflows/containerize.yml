@@ -1,0 +1,46 @@
+name: Containerize
+on:
+  workflow_run:
+    workflows: [ "Run tests" ]
+    types:
+      - completed
+
+jobs:
+  containerize:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    #   && github.ref == 'refs/heads/master' }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
+        with:
+          images: antoinetsz/letting-fr
+
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v1
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: |
+            antoinetsz/letting-fr:${{ github.sha }}
+            antoinetsz/letting-fr:latest
+          labels: |
+            ${{ github.sha }}
+            latest
+          env:
+            SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
