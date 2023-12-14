@@ -107,7 +107,7 @@ USE_I18N = True
 
 USE_TZ = True
 
-CSRF_TRUSTED_ORIGINS = ["https://antoinearchy-oc-lettings.onrender.com"]
+CSRF_TRUSTED_ORIGINS = ["https://*.onrender.com"]
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
