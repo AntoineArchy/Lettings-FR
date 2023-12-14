@@ -61,10 +61,6 @@ class LettingsIndexViewTest(TestCase):
         response = self.client.get(url)
         # Vérifie que la réponse a un code HTTP 500 (Internal Server Error)
         self.assertEqual(response.status_code, 500)
-        self.assertIn(
-            "Une erreur s'est produite lors de la récupération des locations.",
-            response.content.decode(),
-        )
 
 
 class LettingViewTest(TestCase):
@@ -94,10 +90,8 @@ class LettingViewTest(TestCase):
         url = reverse("letting", args=["invalid_id"])
         response = self.client.get(url)
 
-        # Vérifie que la réponse a un code HTTP 400 (Bad Request) et contient le bon message
-        # d'erreur
+        # Vérifie que la réponse a un code HTTP 400 (Bad Request)
         self.assertEqual(response.status_code, 400)
-        self.assertIn("Paramètres de requête invalides.", response.content.decode())
 
     def test_nonexistent_letting_id(self):
         # Test le comportement de la vue en cas d'ID transmis valide, mais non existant
@@ -105,9 +99,8 @@ class LettingViewTest(TestCase):
         url = reverse("letting", args=["999"])
         response = self.client.get(url)
 
-        # Vérifie que la réponse a un code HTTP 404 (Not Found) et contient le bon message d'erreur
+        # Vérifie que la réponse a un code HTTP 404 (Not Found)
         self.assertEqual(response.status_code, 404)
-        self.assertIn("La location demandée est introuvable.", response.content.decode())
 
     @patch("oc_lettings_site.lettings.views.Letting.objects.get")
     def test_unhandled_exception_in_view(self, mock_get):
@@ -122,7 +115,3 @@ class LettingViewTest(TestCase):
 
         # Vérifie que la réponse a un code HTTP 500 (Internal Server Error)
         self.assertEqual(response.status_code, 500)
-        self.assertIn(
-            "Une erreur s'est produite lors de la récupération de la locations 42",
-            response.content.decode(),
-        )

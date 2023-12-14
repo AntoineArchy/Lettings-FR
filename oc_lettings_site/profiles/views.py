@@ -1,15 +1,11 @@
 import logging
 
 from django.core.exceptions import ObjectDoesNotExist
-from django.http import (
-    HttpRequest,
-    HttpResponse,
-    HttpResponseServerError,
-    HttpResponseNotFound,
-)
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 
 from oc_lettings_site.profiles.models import Profile
+from oc_lettings_site.views import log_and_response_error
 
 
 def index(request: HttpRequest) -> HttpResponse:
@@ -27,12 +23,11 @@ def index(request: HttpRequest) -> HttpResponse:
         return render(request, "profiles/index.html", context)
 
     except Exception as e:
-        logging.error(
-            f"{request.path} : 500, Une erreur s'est produite lors de la "
-            f"récupération des profiles: {e}"
-        )
-        return HttpResponseServerError(
-            f"Une erreur s'est produite lors de la récupération des profiles."
+        return log_and_response_error(
+            request,
+            f"Une erreur s'est produite lors de la récupération des profiles: {e}",
+            "Une erreur s'est produite lors de la récupération des profiles.",
+            500,
         )
 
 
@@ -51,16 +46,16 @@ def profile(request: HttpRequest, username: str) -> HttpResponse:
         return render(request, "profiles/profile.html", context)
 
     except ObjectDoesNotExist as e:
-        logging.error(
-            f"{request.path} : 404, Une erreur s'est produite lors de la récupération du "
-            f"profil de {username} : {e}"
+        return log_and_response_error(
+            request,
+            f"Une erreur s'est produite lors de la récupération du profil de {username} : {e}",
+            "Le profil demandé est introuvable.",
+            404,
         )
-        return HttpResponseNotFound(f"Le profil demandé est introuvable.")
     except Exception as e:
-        logging.error(
-            f"{request.path} : 500, Une erreur s'est produite lors de la récupération du "
-            f"profil de {username} : {e}"
-        )
-        return HttpResponseServerError(
-            f"Une erreur s'est produite lors de la récupération du profil de {username}"
+        return log_and_response_error(
+            request,
+            f"Une erreur s'est produite lors de la récupération du profil de {username} : {e}",
+            f"Une erreur s'est produite lors de la récupération du profil de {username}",
+            500,
         )

@@ -80,20 +80,17 @@ class ProfileViewTest(TestCase):
         url = reverse("profile", args=["nonexistentuser"])
         response = self.client.get(url)
 
-        # Assurez-vous que le code de statut de la réponse est correct
+        # Vérifie que le code de statut de la réponse est correct
         self.assertEqual(response.status_code, 404)
-        self.assertIn("Le profil demandé est introuvable.", response.content.decode())
 
     @patch("oc_lettings_site.profiles.views.Profile.objects.get")
     def test_unhandled_exception_in_view(self, mock_get):
-        # Configurez le comportement du mock pour lever une exception
+        # Configure le comportement du mock pour lever une exception
         mock_get.side_effect = Exception("Une erreur simulée")
 
-        # Utilisez reverse pour obtenir l'URL avec un ID de location
         url = reverse("profile", args=["AnyArgs"])
 
-        # Utilisez with self.assertRaises() pour capturer l'exception attendue
         response = self.client.get(url)
 
-        # Vous pouvez également vérifier le code de statut dans la réponse si nécessaire
-        self.assertEqual(response.status_code, 500)  # Ou le code de statut attendu
+        # Vérifie que le code de statut de la réponse est correct
+        self.assertEqual(response.status_code, 500)

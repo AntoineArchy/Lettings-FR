@@ -1,8 +1,17 @@
+import logging
+
 from django.http import (
     HttpRequest,
     HttpResponse,
 )
 from django.shortcuts import render
+
+
+def log_and_response_error(
+    request: HttpRequest, log_message: str, response_message: str, status_code: int
+):
+    logging.error(f"{request.path} : {status_code}, {log_message}")
+    return render(request, f"{status_code}.html", status=status_code)
 
 
 def index(request: HttpRequest) -> HttpResponse:

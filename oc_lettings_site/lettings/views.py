@@ -2,16 +2,11 @@ import logging
 import re
 
 from django.core.exceptions import ObjectDoesNotExist
-from django.http import (
-    HttpRequest,
-    HttpResponse,
-    HttpResponseBadRequest,
-    HttpResponseNotFound,
-    HttpResponseServerError,
-)
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 
 from oc_lettings_site.lettings.models import Letting
+from oc_lettings_site.views import log_and_response_error
 
 
 def index(request: HttpRequest) -> HttpResponse:
@@ -31,12 +26,11 @@ def index(request: HttpRequest) -> HttpResponse:
         return render(request, "lettings/index.html", context)
 
     except Exception as e:
-        logging.error(
-            f"{request.path} : 500, Une erreur s'est produite lors de la récupération "
-            f"des locations: {e}"
-        )
-        return HttpResponseServerError(
-            f"Une erreur s'est produite lors de la récupération des locations."
+        return log_and_response_error(
+            request,
+            f"Une erreur s'est produite lors de la récupération des locations: {e}",
+            "Une erreur s'est produite lors de la récupération des locations.",
+            500,
         )
 
 
@@ -53,12 +47,13 @@ def letting(request: HttpRequest, letting_id: str) -> HttpResponse:
         HttpResponse: La location demandée dans le template 'lettings/letting.html'.
     """
     if not re.match("^\\d+$", letting_id):
-        logging.error(
-            f"{request.path} : 400, Une erreur s'est produite lors de la récupération de "
-            f"la location {letting_id} : "
-            f"{letting_id} n'est pas interprété comme un id valide"
+        return log_and_response_error(
+            request,
+            f"Une erreur s'est produite lors de la récupération de la location {letting_id} : "
+            f"{letting_id} n'est pas interprété comme un id valide",
+            "Paramètres de requête invalides.",
+            400,
         )
-        return HttpResponseBadRequest("Paramètres de requête invalides.")
 
     try:
         letting = Letting.objects.get(id=letting_id)
@@ -69,17 +64,17 @@ def letting(request: HttpRequest, letting_id: str) -> HttpResponse:
         return render(request, "lettings/letting.html", context)
 
     except ObjectDoesNotExist as e:
-        logging.error(
-            f"{request.path} : 404, Une erreur s'est produite lors de la récupération "
-            f"de la locations {letting_id} : {e} "
-            f"{letting_id} n'est pas interprété comme un id valide"
+        return log_and_response_error(
+            request,
+            f"Une erreur s'est produite lors de la récupération de la locations"
+            f" {letting_id} : {e}",
+            "La location demandée est introuvable.",
+            404,
         )
-        return HttpResponseNotFound("La location demandée est introuvable.")
     except Exception as e:
-        logging.error(
-            f"{request.path} : 500, Une erreur s'est produite lors de la récupération de la "
-            f"locations {letting_id}: {e}"
-        )
-        return HttpResponseServerError(
-            f"Une erreur s'est produite lors de la récupération de la locations {letting_id}"
+        return log_and_response_error(
+            request,
+            f"Une erreur s'est produite lors de la récupération de la locations {letting_id}: {e}",
+            f"Une erreur s'est produite lors de la récupération de la locations {letting_id}",
+            500,
         )
