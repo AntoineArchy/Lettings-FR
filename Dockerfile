@@ -14,6 +14,7 @@ RUN python manage.py migrate
 
 
 EXPOSE 8000
-
+# Récupération des fichiers statiques
+RUN python3 manage.py collectstatic --noinput
 # Commande par défaut à exécuter lors du démarrage du conteneur
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

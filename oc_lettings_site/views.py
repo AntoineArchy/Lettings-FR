@@ -22,3 +22,15 @@ def index(request: HttpRequest) -> HttpResponse:
     :return: La page d'accueil en utilisant le template 'index.html'
     """
     return render(request, "index.html")
+
+
+def oc_lettings_site_404(request, exception):
+    return render(request, "404.html", status=404)
+
+
+def oc_lettings_site_400(request, exception):
+    return render(request, "400.html", status=404)
+
+
+def oc_lettings_site_500(request):
+    return render(request, "500.html", status=500)
