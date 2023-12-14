@@ -40,7 +40,7 @@ jobs:
   containerize:
     runs-on: ubuntu-latest
     needs: build_and_test
-    if: ${{ needs.build_and_test.result == 'success' && github.ref == 'refs/heads/master' }}
+    if: ${{ needs.build_and_test.result == 'success' }}
 
 
 
@@ -73,3 +73,4 @@ jobs:
           push: true
           tags: antoinetsz/letting-fr:${{ github.sha }}
           labels: ${{ github.sha }}
+          SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
