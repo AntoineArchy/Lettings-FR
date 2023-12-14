@@ -43,5 +43,3 @@ jobs:
           labels: |
             ${{ github.sha }}
             latest
-          env:
-            SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
