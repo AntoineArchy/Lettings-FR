@@ -5,6 +5,7 @@ from oc_lettings_site.lettings.models import Address, Letting
 
 class LettingModelTest(TestCase):
     def setUp(self):
+        # Il nous faut une Adresse valide pour tester le comportement du model
         Address.objects.create(
             number=42,
             street="Main Street",
@@ -33,5 +34,6 @@ class LettingModelTest(TestCase):
             letting.full_clean()
 
     def test_letting_not_exist(self):
+        # Test que l'Exception attendue est levée en cas d'objet inexistant
         with self.assertRaises(ObjectDoesNotExist):
             Letting.objects.get(address=42)

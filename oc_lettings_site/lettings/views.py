@@ -9,13 +9,12 @@ from oc_lettings_site.lettings.models import Letting
 from oc_lettings_site.views import log_and_response_error
 
 
-# Create your views here.
-def lettings_index(request: HttpRequest) -> HttpResponse:
+def index(request: HttpRequest) -> HttpResponse:
     """
     Affiche la liste des locations connues en bdd
 
     :param request: Objet de requête HTTP Django.
-    :return: Les locations connues, affichées dans le template "lettings_index.html".
+    :return: Les locations connues, affichées dans le template "lettings/index.html".
     """
 
     try:
@@ -24,7 +23,7 @@ def lettings_index(request: HttpRequest) -> HttpResponse:
             logging.warning("Il semble qu'aucune location ne soit disponible")
 
         context = {"lettings_list": lettings_list}
-        return render(request, "lettings_index.html", context)
+        return render(request, "lettings/index.html", context)
 
     except Exception as e:
         return log_and_response_error(
@@ -45,7 +44,7 @@ def letting(request: HttpRequest, letting_id: str) -> HttpResponse:
         letting_id (int): L'identifiant unique de la location à récupérer.
 
     :return:
-        HttpResponse: La location demandée dans le template 'letting.html'.
+        HttpResponse: La location demandée dans le template 'lettings/letting.html'.
     """
     if not re.match("^\\d+$", letting_id):
         return log_and_response_error(
@@ -62,7 +61,7 @@ def letting(request: HttpRequest, letting_id: str) -> HttpResponse:
             "title": letting.title,
             "address": letting.address,
         }
-        return render(request, "letting.html", context)
+        return render(request, "lettings/letting.html", context)
 
     except ObjectDoesNotExist as e:
         return log_and_response_error(
