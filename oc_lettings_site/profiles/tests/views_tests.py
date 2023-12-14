@@ -1,10 +1,11 @@
 import logging
+from unittest.mock import patch
 
 from django.contrib.auth.models import User
 from django.test import TestCase
 from django.urls import reverse
 
-from oc_lettings_site.models import Profile
+from oc_lettings_site.profiles.models import Profile
 
 
 class ProfilesIndexViewTest(TestCase):
@@ -20,7 +21,7 @@ class ProfilesIndexViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
 
         # Vérifie que la réponse utilise le bon template
-        self.assertTemplateUsed(response, "profiles_index.html")
+        self.assertTemplateUsed(response, "profiles/index.html")
 
         # Vérifie que les profiles sont présents dans le contexte
         self.assertIn("profiles_list", response.context)
@@ -40,6 +41,20 @@ class ProfilesIndexViewTest(TestCase):
             self.client.get(url)
         self.assertIn("Il semble qu'aucun profil n'est disponible", cm.output[0])
 
+    @patch("oc_lettings_site.profiles.views.Profile.objects.all")
+    def test_unhandled_exception_in_view(self, mock_get):
+        # Configurez le comportement du mock pour lever une exception
+        mock_get.side_effect = Exception("Une erreur simulée")
+
+        # Utilisez reverse pour obtenir l'URL avec un ID de location
+        url = reverse("profiles_index")
+
+        # Utilisez with self.assertRaises() pour capturer l'exception attendue
+        response = self.client.get(url)
+
+        # Vous pouvez également vérifier le code de statut dans la réponse si nécessaire
+        self.assertEqual(response.status_code, 500)  # Ou le code de statut attendu
+
 
 class ProfileViewTest(TestCase):
     def setUp(self):
@@ -53,7 +68,7 @@ class ProfileViewTest(TestCase):
 
         # Vérifie que le code de statut de la réponse est correct et utilise le bon template
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "profile.html")
+        self.assertTemplateUsed(response, "profiles/profile.html")
 
         # Vérifie que le modèle de profil est présent dans le contexte
         self.assertIn("profile", response.context)
@@ -68,3 +83,17 @@ class ProfileViewTest(TestCase):
         # Assurez-vous que le code de statut de la réponse est correct
         self.assertEqual(response.status_code, 404)
         self.assertIn("Le profil demandé est introuvable.", response.content.decode())
+
+    @patch("oc_lettings_site.profiles.views.Profile.objects.get")
+    def test_unhandled_exception_in_view(self, mock_get):
+        # Configurez le comportement du mock pour lever une exception
+        mock_get.side_effect = Exception("Une erreur simulée")
+
+        # Utilisez reverse pour obtenir l'URL avec un ID de location
+        url = reverse("profile", args=["AnyArgs"])
+
+        # Utilisez with self.assertRaises() pour capturer l'exception attendue
+        response = self.client.get(url)
+
+        # Vous pouvez également vérifier le code de statut dans la réponse si nécessaire
+        self.assertEqual(response.status_code, 500)  # Ou le code de statut attendu

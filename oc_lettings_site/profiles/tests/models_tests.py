@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from django.test import TestCase
 
-from oc_lettings_site.models import Profile
+from oc_lettings_site.profiles.models import Profile
 
 
 class ProfileModelTest(TestCase):
