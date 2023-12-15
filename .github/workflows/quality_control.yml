@@ -27,6 +27,7 @@ jobs:
         env:
           SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
           SECRET_KEY: ${{ secrets.SENTRY_DSN }}
+          DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
           DJANGO_SETTINGS_MODULE: oc_lettings_site.settings
         run: |
           coverage run -m pytest  -v -s
