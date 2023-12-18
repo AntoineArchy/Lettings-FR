@@ -26,7 +26,7 @@ Dans le cas ou le push concerne la branche principale ET que la suite de tests s
 Dans le cas ou le push concerne la branche principale ET que la conteneurisation s'est exécutée sans erreurs, alors :
 
 3. **Déploiement en Production :**
-    - Met en service le site sur Azure.
+    - Met en service le site sur Render.
 
 ## Fonctionnement
 
@@ -44,7 +44,7 @@ Les secrets nécessaires sont :
 - DOCKER_PASSWORD : Votre mot de passe Docker
   [FUTURE :]
 - DOCKER_REPO : Le repository docker sur lequel vous souhaitez push
-- Infos liée à Azure
+- Infos liée à Render
 
 ## Conteneurisation
 
