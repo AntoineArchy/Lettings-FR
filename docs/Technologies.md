@@ -19,11 +19,11 @@
     - [Utilisation](ProcedureTestEtGestionErreurs.md#formatage)
 - **Monitoring**: [Sentry](https://sentry.io/welcome/)
     - [Utilisation](ProcedureTestEtGestionErreurs.md#monitoring)
-- **Documentation
-  **: [ReadTheDocs /w MkDocs](https://docs.readthedocs.io/en/stable/intro/getting-started-with-mkdocs.html)
+- **Documentation**: [ReadTheDocs /w MkDocs](https://docs.readthedocs.io/en/stable/intro/getting-started-with-mkdocs.html)
     - [Utilisation](CI_CD_Deploiement.md#intégration-readthedocs)
 - **Hébergement**: [Render](https://render.com/)
     - [Utilisation](CI_CD_Deploiement.md#déploiement)
+
 - **Convention d'écriture:** [Guide de développement](pdf/Guide%20de%20développement.pdf).
 
 ## Outils de Gestion de Projet
@@ -42,4 +42,3 @@
 - **[Render](https://render.com/):** Hébergement et mise en place des variables d'environnements
   de l'application.
     - [Détail de l'utilisation](CI_CD_Deploiement.md#déploiement)
-

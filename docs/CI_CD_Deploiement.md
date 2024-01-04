@@ -26,7 +26,7 @@ Dans le cas ou le push concerne la branche principale ET que la conteneurisation
 
 3. **Déploiement en Production :**
     - Met automatiquement la documentation [ReadTheDocs](https://readthedocs.org/) à jour
-    - Met en service le site sur Render.
+
 
 ### Fonctionnement :
 
