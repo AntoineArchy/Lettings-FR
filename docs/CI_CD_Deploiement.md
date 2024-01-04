@@ -27,11 +27,10 @@ Dans le cas ou le push concerne la branche principale ET que la conteneurisation
 3. **Déploiement en Production :**
     - Met automatiquement la documentation [ReadTheDocs](https://readthedocs.org/) à jour
 
-
 ### Fonctionnement :
 
 L'automatisation repose sur des [Github Action](https://github.com/features/actions). Le détail du workflow est
-consultables dans les fichier .github/workflows/
+consultables dans les fichiers .github/workflows/
 
 ### Prérequis :
 
