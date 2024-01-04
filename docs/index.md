@@ -18,10 +18,12 @@ projet comprennent :
 
 ## Prérequis
 
-- Compte GitHub avec accès en lecture à ce repository
-- Git CLI
-- SQLite3 CLI
-- Interpréteur Python, version 3.6 ou supérieure
+- Compte [GitHub](https://github.com/) avec accès en lecture
+  à [ce repository](https://github.com/AntoineArchy/Lettings-FR)
+- Compte [Docker](https://www.docker.com/)
+- Compte [Sentry](https://docs.sentry.io/)
+- Compte [Render](https://render.com/)
+- Interpréteur [Python](https://www.python.org/downloads/), version 3.10 ou supérieure
 
 Dans le reste de la documentation sur le développement local, il est supposé que la commande `python` de votre OS shell
 exécute l'interpréteur Python ci-dessus (à moins qu'un environnement virtuel ne soit activé).

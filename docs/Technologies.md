@@ -21,6 +21,9 @@
     - [Utilisation](ProcedureTestEtGestionErreurs.md#monitoring)
 - **Documentation
   **: [ReadTheDocs /w MkDocs](https://docs.readthedocs.io/en/stable/intro/getting-started-with-mkdocs.html)
+    - [Utilisation](CI_CD_Deploiement.md#intégration-readthedocs)
+- **Hébergement**: [Render](https://render.com/)
+    - [Utilisation](CI_CD_Deploiement.md#déploiement)
 - **Convention d'écriture:** [Guide de développement](pdf/Guide%20de%20développement.pdf).
 
 ## Outils de Gestion de Projet
@@ -36,4 +39,7 @@
 - **[GitHub Actions:](https://github.com/features/actions)** Mise en place d'un pipeline CI/CD pour automatiser les
   tests, le build et le déploiement.
     - [Détail de l'implémentation](CI_CD_Deploiement.md)
-- [FUTURE]**Azure**
+- **[Render](https://render.com/):** Hébergement et mise en place des variables d'environnements
+  de l'application.
+    - [Détail de l'utilisation](CI_CD_Deploiement.md#déploiement)
+
