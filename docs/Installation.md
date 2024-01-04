@@ -29,6 +29,8 @@ Un fichier .env avec des informations par défault est présent à la racine du 
 afin d'y renseigner vos propres paramètres.
 
 - Voir [Configuration Sentry](ProcedureTestEtGestionErreurs.md#monitoring)
+- Voir [Configuration Docker](CI_CD_Deploiement.md#conteneurisation)
+- Voir [Configuration Render](CI_CD_Deploiement.md#déploiement)
 
 ## Exécuter le site
 
