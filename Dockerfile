@@ -17,4 +17,4 @@ EXPOSE 8000
 # Récupération des fichiers statiques
 RUN python3 manage.py collectstatic --noinput
 # Commande par défaut à exécuter lors du démarrage du conteneur
-CMD ["sh", "-c", "python3 manage.py collectstatic --noinput && python manage.py runserver 0.0.0.0:8000"]
+CMD ["gunicorn", "-b", "0.0.0.0:8000", "oc_lettings_site.wsgi"]
