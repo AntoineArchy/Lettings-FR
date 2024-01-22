@@ -45,3 +45,6 @@ if sentry_dsn is not None:
         ],
     )
 
+
+def on_startup_log():
+    logging.log("Project starting...")
