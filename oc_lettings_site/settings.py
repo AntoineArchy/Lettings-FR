@@ -3,7 +3,7 @@ import os
 from pathlib import Path
 
 from dotenv import load_dotenv
-import logger
+import oc_lettings_site.logger as logger
 
 
 load_dotenv()
