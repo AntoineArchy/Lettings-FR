@@ -5,8 +5,9 @@ from pathlib import Path
 from dotenv import load_dotenv
 import logger
 
-load_dotenv()
 
+load_dotenv()
+logger.on_startup_log()
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = Path(__file__).resolve().parent.parent
 
