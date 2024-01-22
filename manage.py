@@ -1,13 +1,5 @@
-import datetime
 import os
 import sys
-from dotenv import load_dotenv
-
-import logging
-from logging.handlers import TimedRotatingFileHandler
-
-import sentry_sdk
-from sentry_sdk.integrations.logging import LoggingIntegration
 
 
 def main():
